@@ -70,6 +70,7 @@ export function RegisterForm() {
   const [submitting, setSubmitting] = useState(false)
   const [submitted, setSubmitted] = useState(false)
   const [emailError, setEmailError] = useState("")
+  const [submitError, setSubmitError] = useState("")
 
   const TOTAL_STEPS = 3
 
@@ -93,11 +94,33 @@ export function RegisterForm() {
       return
     }
     setEmailError("")
+    setSubmitError("")
     setSubmitting(true)
-    // Simulate network request
-    await new Promise((r) => setTimeout(r, 1500))
-    setSubmitting(false)
-    setSubmitted(true)
+
+    try {
+      const response = await fetch("/api/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      })
+
+      if (!response.ok) {
+        const payload = (await response.json().catch(() => null)) as
+          | { error?: string }
+          | null
+        throw new Error(payload?.error ?? "Failed to submit. Please try again.")
+      }
+
+      setSubmitted(true)
+    } catch (error) {
+      const message =
+        error instanceof Error ? error.message : "Failed to submit. Please try again."
+      setSubmitError(message)
+    } finally {
+      setSubmitting(false)
+    }
   }
 
   const next = () => {
@@ -389,6 +412,11 @@ export function RegisterForm() {
                       <p className="mt-1.5 text-xs text-destructive">{emailError}</p>
                     )}
                   </div>
+                  {submitError && (
+                    <p className="rounded-lg border border-destructive/40 bg-destructive/10 px-3 py-2 text-xs text-destructive">
+                      {submitError}
+                    </p>
+                  )}
                   <div>
                     <label
                       htmlFor="message"

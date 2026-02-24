@@ -1,5 +1,3 @@
-import { ArrowDown } from "lucide-react"
-
 export function HeroSection() {
   return (
     <section id="about" className="relative flex min-h-[85vh] flex-col items-center justify-center px-6 pt-24 text-center">
@@ -34,11 +32,6 @@ export function HeroSection() {
         </a>
       </div>
 
-      {/* Scroll indicator */}
-      <div className="absolute bottom-8 flex flex-col items-center gap-2 text-muted-foreground animate-bounce">
-        <span className="text-xs tracking-wide uppercase">Scroll</span>
-        <ArrowDown className="h-4 w-4" />
-      </div>
     </section>
   )
 }
