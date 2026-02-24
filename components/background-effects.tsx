@@ -3,6 +3,16 @@
 export function BackgroundEffects() {
   return (
     <div className="pointer-events-none fixed inset-0 overflow-hidden" aria-hidden="true">
+      {/* Static skyline silhouette */}
+      <div
+        className="absolute inset-x-0 bottom-0 h-[42vh] opacity-80"
+        style={{
+          backgroundImage: "url('/images/buildings-skyline.svg')",
+          backgroundPosition: "bottom center",
+          backgroundRepeat: "repeat-x",
+          backgroundSize: "auto 100%",
+        }}
+      />
       {/* Grid overlay */}
       <div
         className="absolute inset-0 opacity-[0.03]"
