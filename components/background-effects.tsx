@@ -12,24 +12,6 @@ export function BackgroundEffects() {
           backgroundSize: "60px 60px",
         }}
       />
-      {/* Static skyline silhouette */}
-      <div
-        className="absolute inset-x-0 bottom-0 h-[55vh] opacity-100"
-        style={{
-          backgroundImage: "url('/images/buildings-skyline.svg')",
-          backgroundPosition: "bottom center",
-          backgroundRepeat: "repeat-x",
-          backgroundSize: "auto 115%",
-          filter: "contrast(1.35)",
-        }}
-      />
-      {/* Top fade to separate skyline from content */}
-      <div
-        className="absolute inset-x-0 bottom-[42vh] h-28"
-        style={{
-          background: "linear-gradient(to top, rgba(0,0,0,0.5), rgba(0,0,0,0))",
-        }}
-      />
       {/* Teal glow — top right */}
       <div className="absolute -top-40 right-0 h-[500px] w-[500px] rounded-full bg-primary/10 blur-[120px]" />
       {/* Deep glow — bottom left */}
